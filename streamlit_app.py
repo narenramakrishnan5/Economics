@@ -11,7 +11,7 @@ st.info("More features are coming soon, stay tuned...", icon="📃")
          
 if "messages" not in st.session_state.keys(): # Initialize the chat messages history
     st.session_state.messages = [
-        {"role": "assistant", "content": "Ask me a question about any Physics related query"}
+        {"role": "assistant", "content": "Ask me a question about any Economics related query"}
     ]
 
 @st.cache_resource(show_spinner=False)
@@ -19,7 +19,7 @@ def load_data():
     with st.spinner(text="Loading hang tight! This should take 1-2 minutes."):
         reader = SimpleDirectoryReader(input_dir="./data", recursive=True)
         docs = reader.load_data()
-        service_context = ServiceContext.from_defaults(llm=OpenAI(model="gpt-4", temperature=0.1, system_prompt="You are the IB physics teacher's assistant. You should answer the students' questions based on the data that you have. If a question is not relevant to physics, request the student to ask a relevant question. If you do not know the answer, request the student to ask their physics teacher. Keep your answers technical and based on facts – do not hallucinate features."))
+        service_context = ServiceContext.from_defaults(llm=OpenAI(model="gpt-4", temperature=0.1, system_prompt="You are the IB economics teacher's assistant. You should answer the students' questions based on the data that you have. If a question is not relevant to economics, request the student to ask a relevant question. If you do not know the answer, request the student to ask their economics teacher. Keep your answers technical and based on facts – do not hallucinate features."))
         index = VectorStoreIndex.from_documents(docs, service_context=service_context)
         return index
 
